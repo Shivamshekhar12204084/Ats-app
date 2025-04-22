@@ -3,9 +3,6 @@ import google.generativeai as genai
 from pypdf import PdfReader
 import re
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # Configure the Streamlit Page
 st.set_page_config(page_title="ATS Resume App", layout="wide")
@@ -18,7 +15,7 @@ def extract_text_pdf(uploaded_file):
     return pdf_txt.strip() if pdf_txt.strip() else "No extractable text found in the PDF"
 
 # Configure Gemini API using environment variable
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = "AIzaSyCfI61odY1mwpjh6QJS6Od_WU32tjrOe0Y"
 
 if GEMINI_API_KEY is None:
     st.error("GEMINI_API_KEY is missing. Check your Render environment variables.")
