@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/Shivamshekhar12204084/Ats-app.git' // Replace with your repo URL
+                git branch: 'main', url: 'https://github.com/Shivamshekhar12204084/Ats-app.git' // Replace with your repo URL
             }
         }
 
