@@ -16,8 +16,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh """
-                docker build -t ${DOCKERHUB_USER}/${IMAGE_NAME}:${IMAGE_TAG} .
+                bat """
+                docker build -t %DOCKERHUB_USER%/%IMAGE_NAME%:%IMAGE_TAG% .
                 """
             }
         }
@@ -25,9 +25,9 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh """
-                    echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-                    docker push ${DOCKERHUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}
+                    bat """
+                    echo %PASSWORD% | docker login -u %USERNAME% --password-stdin
+                    docker push %DOCKERHUB_USER%/%IMAGE_NAME%:%IMAGE_TAG%
                     docker logout
                     """
                 }
